@@ -38,6 +38,7 @@ function getCss(theme: string, fontSize: string) {
         justify-content: center;
     }
 
+
     code {
         color: #D400FF;
         white-space: pre-wrap;
