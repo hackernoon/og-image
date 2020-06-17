@@ -1,4 +1,3 @@
-
 import { readFileSync } from 'fs';
 import marked from 'marked';
 import { sanitizeHtml } from './sanitizer';
@@ -7,10 +6,12 @@ const twemoji = require('twemoji');
 const twOptions = { folder: 'svg', ext: '.svg' };
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
+marked.setOptions({ breaks: true })
+
 const rglr = readFileSync(`${__dirname}/../_fonts/HackerNoonV1-Regular.woff2`).toString('base64');
 
 function getCss(theme: string, fontSize: string) {
-    let background = '#62ff86';
+    let background = '#00ff00';
     let foreground = 'black';
     let radial = 'lightgray';
 
