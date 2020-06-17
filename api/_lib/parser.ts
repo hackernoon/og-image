@@ -58,7 +58,7 @@ function getDefaultImages(images: string[], theme: Theme): string[] {
     if (!images || !images[0]) {
         return [defaultImage];
     }
-    if (!images[0].startsWith('https://hackernoon.com')) {
+    if (!images[0].startsWith('https://hackernoon.com') && !images[0].includes('hackernoon-app.appspot.com')) {
         images[0] = defaultImage;
     }
     return images;
