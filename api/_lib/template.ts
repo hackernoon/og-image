@@ -107,7 +107,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <body>
         <div>
             <div class="spacer">
-            <div class="${ images[0].includes("avatars") ? `logo-wrapper bordered` : `logo-wrapper`}">
+            <div class="${ images[0].includes("avatars") || images[0].includes("images") ? `logo-wrapper bordered` : `logo-wrapper`}">
                 ${images.map((img, i) =>
         getPlusSign(i) + getImage(img, widths[i], heights[i])
     ).join('')}
