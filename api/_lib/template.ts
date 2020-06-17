@@ -62,9 +62,7 @@ function getCss(theme: string, fontSize: string) {
     }
 
     .plus {
-        color: #BBB;
-        font-family: Times New Roman, Verdana;
-        font-size: 100px;
+        display: none;
     }
 
     .spacer {
