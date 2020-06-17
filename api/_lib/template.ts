@@ -58,12 +58,20 @@ function getCss(theme: string, fontSize: string) {
         justify-items: center;
     }
 
+    .bordered img {
+        box-shadow: rgb(0, 0, 0) 0px 0.2em,
+                    rgb(0, 0, 0) 0px -0.2em,
+                    rgb(0, 0, 0) 0.2em 0px,
+                    rgb(0, 0, 0) -0.2em 0px;
+    }
+
     .logo {
         margin: 0 75px;
     }
 
     .plus {
-        display: none;
+        color: #000000;
+        font-size: 72px;
     }
 
     .spacer {
@@ -99,7 +107,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <body>
         <div>
             <div class="spacer">
-            <div class="logo-wrapper">
+            <div class="${ images[0].includes("avatars") ? `logo-wrapper bordered` : `logo-wrapper`}">
                 ${images.map((img, i) =>
         getPlusSign(i) + getImage(img, widths[i], heights[i])
     ).join('')}
