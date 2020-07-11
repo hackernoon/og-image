@@ -11,7 +11,7 @@ export function parseRequest(req: IncomingMessage) {
     let extension = '';
     let text = `**${encodeURIComponent(
         `Noonies Award 2020`
-    )}**<br />${encodeURIComponent(
+    )}**<br />${decodeURIComponent(
         arr[0]
     )}`;
 
