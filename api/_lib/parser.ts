@@ -10,17 +10,10 @@ export function parseRequest(req: IncomingMessage) {
     const arr = (pathname || '/').slice(1).split('.');
     let extension = '';
     let text = `**${encodeURIComponent(
-        `Noonies Award 2020`,
-    )}**`;
-
-    if (arr.length === 1) {
-        text += `<br />${encodeURIComponent(
-            arr[0]
-        )}`
-    } else {
-        extension = arr.pop() as string;
-        text += '<br />' + arr.join('.');
-    }
+        `Noonies Award 2020`
+    )}**<br />${encodeURIComponent(
+        arr[0]
+    )}`;
 
     const parsedRequest: ParsedRequest = {
         fileType: extension === 'jpeg' ? extension : 'png',
