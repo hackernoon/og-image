@@ -28,11 +28,11 @@ export function parseRequest(req: IncomingMessage) {
         theme: 'light',
         md: true,
         fontSize: '72px',
-        images: getArray(images),
+        images: getDefaultImages(),
         widths: getArray(widths),
         heights: getArray(heights),
     };
-    parsedRequest.images = getDefaultImages();
+
     return parsedRequest;
 }
 
