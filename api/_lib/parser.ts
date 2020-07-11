@@ -5,14 +5,7 @@ import { ParsedRequest, Theme } from './types';
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { fontSize, images, widths, heights, theme, md } = (query || {});
-
-    if (Array.isArray(fontSize)) {
-        throw new Error('Expected a single fontSize');
-    }
-    if (Array.isArray(theme)) {
-        throw new Error('Expected a single theme');
-    }
+    const { widths, heights } = (query || {});
 
     const arr = (pathname || '/').slice(1).split('.');
     let extension = '';
@@ -39,7 +32,7 @@ export function parseRequest(req: IncomingMessage) {
         widths: getArray(widths),
         heights: getArray(heights),
     };
-    parsedRequest.images = getDefaultImages(parsedRequest.images, parsedRequest.theme);
+    parsedRequest.images = getDefaultImages();
     return parsedRequest;
 }
 
@@ -53,7 +46,7 @@ function getArray(stringOrArray: string[] | string | undefined): string[] {
     }
 }
 
-function getDefaultImages(images: string[], theme: Theme): string[] {
+function getDefaultImages(): string[] {
     const images = [
         'https://hackernoon.com/hn-icon.png',
         'https://noonies.tech/sponsor-logo__amplify.png'
