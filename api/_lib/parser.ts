@@ -19,7 +19,7 @@ export function parseRequest(req: IncomingMessage) {
         )}`
     } else {
         extension = arr.pop() as string;
-        text += arr.join('.');
+        text += '<br />' + arr.join('.');
     }
 
     const parsedRequest: ParsedRequest = {
