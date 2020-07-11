@@ -29,9 +29,9 @@ export function parseRequest(req: IncomingMessage) {
     const parsedRequest: ParsedRequest = {
         fileType: extension === 'jpeg' ? extension : 'png',
         text: decodeURIComponent(text),
-        theme: theme === 'dark' ? 'dark' : 'light',
-        md: md === '1' || md === 'true',
-        fontSize: fontSize || '96px',
+        theme: 'light',
+        md: true,
+        fontSize: '72px',
         images: getArray(images),
         widths: getArray(widths),
         heights: getArray(heights),
@@ -51,15 +51,10 @@ function getArray(stringOrArray: string[] | string | undefined): string[] {
 }
 
 function getDefaultImages(images: string[], theme: Theme): string[] {
-    const defaultImage = theme === 'light'
-        ? 'https://hackernoon.com/hn-icon.png'
-        : 'https://hackernoon.com/hn-icon.png';
-
-    if (!images || !images[0]) {
-        return [defaultImage];
-    }
-    if (!images[0].startsWith('https://hackernoon.com') && !images[0].includes('hackernoon-app.appspot.com')) {
-        images[0] = defaultImage;
-    }
+    const images = [
+        'https://hackernoon.com/hn-icon.png',
+        'https://noonies.tech/sponsor-logo__amplify.png'
+    ];
+    
     return images;
 }
