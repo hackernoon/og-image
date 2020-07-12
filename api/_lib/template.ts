@@ -69,6 +69,29 @@ function getCss(theme: string, fontSize: string) {
         margin: 0 75px;
     }
 
+    .container {
+        position: relative;
+    }
+
+    .sponsor {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sponsor .description {
+        font-family: 'Hacker', sans-serif;
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+
+    .sponsor img {
+        height: 100px;
+    }
+
     .plus {
         color: #000000;
         font-size: 72px;
@@ -105,17 +128,20 @@ export function getHtml(parsedReq: ParsedRequest) {
         ${getCss(theme, fontSize)}
     </style>
     <body>
-        <div>
+        <div class="container">
             <div class="spacer">
-            <div class="${ images[0].includes("avatars") || images[0].includes("images") ? `logo-wrapper bordered` : `logo-wrapper`}">
-                ${images.map((img, i) =>
-        getPlusSign(i) + getImage(img, widths[i], heights[i])
-    ).join('')}
+            <div class="logo-wrapper">
+                ${getImage(images[0], widths[0], heights[0])}
             </div>
             <div class="spacer">
-            <div class="heading">${emojify(
-        md ? marked(text) : sanitizeHtml(text)
-    )}
+            <div class="heading">
+                ${emojify(
+                    md ? marked(text) : sanitizeHtml(text)
+                )}
+            </div>
+            <div class="sponsor">
+                <span class="description">Sponsored by</span>
+                ${getImage(images[1], widths[1], heights[1])}
             </div>
         </div>
     </body>
@@ -130,8 +156,4 @@ function getImage(src: string, width = 'auto', height = '225') {
         width="${sanitizeHtml(width)}"
         height="${sanitizeHtml(height)}"
     />`
-}
-
-function getPlusSign(i: number) {
-    return i === 0 ? '' : '<div class="plus">+</div>';
 }

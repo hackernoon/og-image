@@ -41,7 +41,7 @@ function getArray(stringOrArray: string[] | string | undefined): string[] {
 
 function getDefaultImages(): string[] {
     const images = [
-        'https://hackernoon.com/hn-icon.png',
+        'https://hackernoon.com/hn-logo.png',
         'https://noonies.tech/sponsor-logo__amplify.png'
     ];
     
