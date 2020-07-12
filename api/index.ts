@@ -3,7 +3,7 @@ import { parseRequest } from './_lib/parser';
 import { getScreenshot } from './_lib/chromium';
 import { getHtml } from './_lib/template';
 
-const isDev = process.env.VERCEL_REGION === 'dev1';
+const isDev = process.env.DEV === '1' || process.env.VERCEL_REGION === 'dev1';
 const isHtmlDebug = process.env.OG_HTML_DEBUG === '1';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
