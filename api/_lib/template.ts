@@ -140,7 +140,7 @@ export function getHtml(parsedReq: ParsedRequest) {
                 )}
             </div>
             <div class="sponsor">
-                <span class="description">Sponsored by</span>
+                <span class="description">In partnership with</span>
                 ${getImage(images[1], widths[1], heights[1])}
             </div>
         </div>
