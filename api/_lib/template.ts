@@ -71,6 +71,10 @@ function getCss(theme: string, fontSize: string) {
 
     .container {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
     }
 
     .sponsor {
@@ -97,10 +101,6 @@ function getCss(theme: string, fontSize: string) {
         font-size: 72px;
     }
 
-    .spacer {
-        margin: 150px;
-    }
-
     .emoji {
         height: 1em;
         width: 1em;
@@ -114,11 +114,30 @@ function getCss(theme: string, fontSize: string) {
         font-style: normal;
         color: ${foreground};
         line-height: 1.8;
-    }`;
+    }
+    
+    .background-image-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .background-image {
+        width: 100%;
+        height: auto;
+    }
+    `;
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights } = parsedReq;
+    const { text, theme, md, fontSize, images, widths, heights, nominee, category } = parsedReq;
+
+    let backgroundImageUrl = `https://noonies.tech/${category.toLowerCase()}.jpg`;
+
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
@@ -128,20 +147,28 @@ export function getHtml(parsedReq: ParsedRequest) {
         ${getCss(theme, fontSize)}
     </style>
     <body>
-        <div class="container">
-            <div class="spacer">
-            <div class="logo-wrapper">
-                ${getImage(images[0], widths[0], heights[0])}
-            </div>
-            <div class="spacer">
+        <div class="background-image-wrapper">
+            <img class="background-image" src="${backgroundImageUrl}" />
+        </div>
+        
+        <div class="content-container">
             <div class="heading">
-                ${emojify(
-                    md ? marked(text) : sanitizeHtml(text)
-                )}
-            </div>
-            <div class="sponsor">
-                <span class="description">In partnership with</span>
-                ${getImage(images[1], widths[1], heights[1])}
+                <div class="award">
+                    ${emojify(
+                        md ? marked(text) : sanitizeHtml(text)
+                    )}
+                </div>
+                ${
+                    nominee
+                    ?
+                    `
+                    <div class="nominee">
+                        ${sanitizeHtml(nominee)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
             </div>
         </div>
     </body>

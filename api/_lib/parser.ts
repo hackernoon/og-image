@@ -5,7 +5,7 @@ import { ParsedRequest } from './types';
 export function parseRequest(req: IncomingMessage) {
     console.log('HTTP ' + req.url);
     const { pathname, query } = parse(req.url || '/', true);
-    const { widths, heights } = (query || {});
+    const { widths, heights, category, nominee } = (query || {});
 
     const arr = (pathname || '/').slice(1).split('.');
     let extension = '';
@@ -24,6 +24,9 @@ export function parseRequest(req: IncomingMessage) {
         images: getDefaultImages(),
         widths: getArray(widths),
         heights: getArray(heights),
+        category: decodeURIComponent(category),
+        nominee: decodeURIComponent(nominee),
+        categoryImageUrl: `https://noonies.tech/templates/${category.toLowerCase()}.jpg`
     };
 
     return parsedRequest;
